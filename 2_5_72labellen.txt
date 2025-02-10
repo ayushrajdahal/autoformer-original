@@ -1,0 +1,5 @@
+2_5_72labellen
+Namespace(is_training=1, model_id='2_5_72labellen', model='Autoformer', data='Energy', root_path='./dataset/Energy/', data_path='load_forecasting.csv', features='M', target='OT', freq='h', checkpoints='./checkpoints/', seq_len=96, label_len=72, pred_len=24, bucket_size=4, n_hashes=4, enc_in=16, dec_in=16, c_out=16, d_model=512, n_heads=8, e_layers=2, d_layers=1, d_ff=2048, moving_avg=25, factor=3, distil=True, dropout=0.05, embed='timeF', activation='gelu', output_attention=False, do_predict=False, num_workers=10, itr=1, train_epochs=7, batch_size=32, patience=3, learning_rate=0.0001, des='Exp', loss='mse', lradj='type1', use_amp=False, use_gpu=True, gpu=0, use_multi_gpu=False, devices='0,1,2,3')  
+mse:0.3737781047821045, mae:0.4082108736038208, rmse:0.6113739609718323 mape:2.7963883876800537 mspe:8652.220703125  
+
+

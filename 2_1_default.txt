@@ -1,0 +1,5 @@
+2_1_default
+Namespace(is_training=1, model_id='2_1_default', model='Autoformer', data='Energy', root_path='./dataset/Energy/', data_path='load_forecasting.csv', features='M', target='OT', freq='h', checkpoints='./checkpoints/', seq_len=96, label_len=48, pred_len=24, bucket_size=4, n_hashes=4, enc_in=16, dec_in=16, c_out=16, d_model=512, n_heads=8, e_layers=2, d_layers=1, d_ff=2048, moving_avg=25, factor=3, distil=True, dropout=0.05, embed='timeF', activation='gelu', output_attention=False, do_predict=False, num_workers=10, itr=1, train_epochs=7, batch_size=32, patience=3, learning_rate=0.0001, des='Exp', loss='mse', lradj='type1', use_amp=False, use_gpu=True, gpu=0, use_multi_gpu=False, devices='0,1,2,3')  
+mse:0.3848399221897125, mae:0.4217773377895355, rmse:0.6203546524047852 mape:2.654405355453491 mspe:3800.140869140625  
+
+

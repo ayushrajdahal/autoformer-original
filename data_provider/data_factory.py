@@ -13,7 +13,12 @@ data_dict = {
 
 def data_provider(args, flag):
     Data = data_dict[args.data]
-    timeenc = 0 if args.embed != 'timeF' else 1
+    if args.embed == 'timeF':
+        timeenc = 1 
+    elif args.embed == 'sincos':
+        timeenc = 2
+    else:
+        timeenc = 0
 
     if flag == 'test':
         shuffle_flag = False

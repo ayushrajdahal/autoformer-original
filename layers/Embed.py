@@ -120,7 +120,11 @@ class TimeFeatureEmbedding(nn.Module):
         self.embed = nn.Linear(d_inp, d_model, bias=False)
 
     def forward(self, x):
-        return self.embed(x)
+        if torch.any(torch.isnan(x)):
+            raise ValueError("NaN values in temporal features")
+        if x.device != self.embed.weight.device:
+            x = x.to(self.embed.weight.device)
+        return self.embed(x.long())
 
 
 class DataEmbedding(nn.Module):
