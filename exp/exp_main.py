@@ -241,11 +241,11 @@ class Exp_Main(Exp_Basic):
     def predict(self, setting, load=False):
         pred_data, pred_loader = self._get_data(flag='pred')
 
-        if load:
-            path = os.path.join(self.args.checkpoints, setting)
-            best_model_path = path + '/' + 'checkpoint.pth'
-            logging.info(best_model_path)
-            self.model.load_state_dict(torch.load(best_model_path))
+        # if load:
+        #     path = os.path.join(self.args.checkpoints, setting)
+        #     best_model_path = path + '/' + 'checkpoint.pth'
+        #     logging.info(best_model_path)
+        #     self.model.load_state_dict(torch.load(best_model_path))
 
         preds = []
 
