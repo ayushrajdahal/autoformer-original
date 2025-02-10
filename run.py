@@ -79,13 +79,16 @@ def main():
 
     args = parser.parse_args()
 
-    args.use_gpu = True if torch.cuda.is_available() and args.use_gpu else False
+    # args.use_gpu = True if torch.cuda.is_available() and args.use_gpu else False
 
-    if args.use_gpu and args.use_multi_gpu:
-        args.devices = args.devices.replace(' ', '')
-        device_ids = args.devices.split(',')
-        args.device_ids = [int(id_) for id_ in device_ids]
-        args.gpu = args.device_ids[0]
+    # if args.use_gpu and args.use_multi_gpu:
+    #     args.devices = args.devices.replace(' ', '')
+    #     device_ids = args.devices.split(',')
+    #     args.device_ids = [int(id_) for id_ in device_ids]
+    #     args.gpu = args.device_ids[0]
+
+    args.use_gpu = True
+    args.gpu = 0  # or whichever GPU index you want to use
 
     print('Args in experiment:')
     print(args)
