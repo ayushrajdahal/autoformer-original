@@ -11,7 +11,7 @@ warnings.filterwarnings('ignore')
 class Dataset_Energy_hour(Dataset):
     def __init__(self, root_path="./dataset/Energy/", flag='train', size=None, 
                  features='S', data_path='load_forecasting.csv',
-                 target='nat_demand', scale=True, timeenc=0, freq='h', scaler_name='standard'): # NOTE: scaler_name isn't passed in the referenced variation
+                 target='nat_demand', scale=True, timeenc=0, freq='h', scaler_name='standard', train_test_val=(3,1,1)): # NOTE: scaler_name isn't passed in the referenced variation
         if size == None:
             self.seq_len = 24 * 4 * 4   # length considered
             self.label_len = 24 * 4     # ground truth
@@ -52,14 +52,18 @@ class Dataset_Energy_hour(Dataset):
 
         df_raw = pd.read_csv(os.path.join(self.root_path, self.data_path))
 
+        # original: for ETTh1
         # border1s = [0, 12 * 30 * 24 - self.seq_len, 12 * 30 * 24 + 4 * 30 * 24 - self.seq_len]
         # border2s = [12 * 30 * 24, 12 * 30 * 24 + 4 * 30 * 24, 12 * 30 * 24 + 8 * 30 * 24]
 
-        border1s = [0,                  12 * 30 * 24 * 3 - self.seq_len,    12 * 30 * 24 * 3 + 12 * 30 * 24 - self.seq_len]
-        border2s = [12 * 30 * 24 * 3,   12 * 30 * 24 * 3 + 12 * 30 * 24,    12 * 30 * 24 * 3 + 24 * 30 * 24]
+        # adapted for load_forecasting: 3/1/1 for train/val/test
+        # border1s = [0,                  12 * 30 * 24 * 3 - self.seq_len,    12 * 30 * 24 * 3 + 12 * 30 * 24 - self.seq_len]
+        # border2s = [12 * 30 * 24 * 3,   12 * 30 * 24 * 3 + 12 * 30 * 24,    12 * 30 * 24 * 3 + 24 * 30 * 24]
+        
+        train_yrs, vali_yrs, test_yrs = 1, 1, 3
 
-        # border1s = [0,                  12 * 30 * 24 * 2 - self.seq_len,    12 * 30 * 24 * 2 + 12 * 30 * 24 - self.seq_len]
-        # border2s = [12 * 30 * 24 * 2,   12 * 30 * 24 * 2 + 12 * 30 * 24,    12 * 30 * 24 * 2 + 36 * 30 * 24]
+        border1s = [0,                          12 * 30 * 24 * train_yrs - self.seq_len,              12 * 30 * 24 * train_yrs + 12 * 30 * 24 * test_yrs - self.seq_len]
+        border2s = [12 * 30 * 24 * train_yrs,   12 * 30 * 24 * train_yrs + 12 * 30 * 24 * test_yrs,   12 * 30 * 24 * train_yrs + 12 * 30 * 24 * vali_yrs + 12 * 30 * 24 * test_yrs]
 
         border1 = border1s[self.set_type]
         border2 = border2s[self.set_type]

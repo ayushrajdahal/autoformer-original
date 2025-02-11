@@ -45,7 +45,8 @@ def data_provider(args, flag):
         features=args.features,
         target=args.target,
         timeenc=timeenc,
-        freq=freq
+        freq=freq,
+        # train_test_val=(args.train_yrs, args.test_yrs, args.val_yrs),
     )
     print(flag, len(data_set))
     data_loader = DataLoader(
