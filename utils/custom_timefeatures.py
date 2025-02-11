@@ -16,72 +16,72 @@ class TimeFeature:
 
 class SecondOfMinuteSine(TimeFeature):
     def __call__(self, index: pd.PeriodIndex) -> np.ndarray:
-        return np.sin(2 * np.pi * index.second / 60)
+        return np.sin(2 * np.pi * (index.second - 1.0) / 59.0)
 
 
 class SecondOfMinuteCosine(TimeFeature):
     def __call__(self, index: pd.PeriodIndex) -> np.ndarray:
-        return np.cos(2 * np.pi * index.second / 60)
+        return np.cos(2 * np.pi * (index.second - 1.0) / 59.0)
 
 
 class MinuteOfHourSine(TimeFeature):
     def __call__(self, index: pd.PeriodIndex) -> np.ndarray:
-        return np.sin(2 * np.pi * index.minute / 60)
+        return np.sin(2 * np.pi * (index.minute - 1.0) / 59.0)
 
 
 class MinuteOfHourCosine(TimeFeature):
     def __call__(self, index: pd.PeriodIndex) -> np.ndarray:
-        return np.cos(2 * np.pi * index.minute / 60)
+        return np.cos(2 * np.pi * (index.minute - 1.0) / 59.0)
 
 
 class HourOfDaySine(TimeFeature):
     def __call__(self, index: pd.PeriodIndex) -> np.ndarray:
-        return np.sin(2 * np.pi * index.hour / 24)
+        return np.sin(2 * np.pi * (index.hour - 1.0) / 23.0)
 
 
 class HourOfDayCosine(TimeFeature):
     def __call__(self, index: pd.PeriodIndex) -> np.ndarray:
-        return np.cos(2 * np.pi * index.hour / 24)
+        return np.cos(2 * np.pi * (index.hour - 1.0) / 23.0)
 
 
 class DayOfWeekSine(TimeFeature):
     def __call__(self, index: pd.PeriodIndex) -> np.ndarray:
-        return np.sin(2 * np.pi * index.dayofweek / 7)
+        return np.sin(2 * np.pi * (index.dayofweek - 1.0) / 6.0)
 
 
 class DayOfWeekCosine(TimeFeature):
     def __call__(self, index: pd.PeriodIndex) -> np.ndarray:
-        return np.cos(2 * np.pi * index.dayofweek / 7)
+        return np.cos(2 * np.pi * (index.dayofweek - 1.0) / 6.0)
 
 
 class DayOfMonthSine(TimeFeature):
     def __call__(self, index: pd.PeriodIndex) -> np.ndarray:
-        return np.sin(2 * np.pi * (index.day - 1) / 31)
+        return np.sin(2 * np.pi * (index.day - 1.0) / 30.0)
 
 
 class DayOfMonthCosine(TimeFeature):
     def __call__(self, index: pd.PeriodIndex) -> np.ndarray:
-        return np.cos(2 * np.pi * (index.day - 1) / 31)
+        return np.cos(2 * np.pi * (index.day - 1.0) / 30.0)
 
 
 class DayOfYearSine(TimeFeature):
     def __call__(self, index: pd.PeriodIndex) -> np.ndarray:
-        return np.sin(2 * np.pi * (index.dayofyear - 1) / 366)
+        return np.sin(2 * np.pi * (index.dayofyear - 1.0) / 365.0)
 
 
 class DayOfYearCosine(TimeFeature):
     def __call__(self, index: pd.PeriodIndex) -> np.ndarray:
-        return np.cos(2 * np.pi * (index.dayofyear - 1) / 366)
+        return np.cos(2 * np.pi * (index.dayofyear - 1.0) / 365.0)
 
 
 class MonthOfYearSine(TimeFeature):
     def __call__(self, index: pd.PeriodIndex) -> np.ndarray:
-        return np.sin(2 * np.pi * (index.month - 1) / 12)
+        return np.sin(2 * np.pi * (index.month - 1.0) / 11.0)
 
 
 class MonthOfYearCosine(TimeFeature):
     def __call__(self, index: pd.PeriodIndex) -> np.ndarray:
-        return np.cos(2 * np.pi * (index.month - 1) / 12)
+        return np.cos(2 * np.pi * (index.month - 1.0) / 11.0)
 
 
 class WeekOfYearSine(TimeFeature):
@@ -90,7 +90,7 @@ class WeekOfYearSine(TimeFeature):
             week = index.isocalendar().week
         except AttributeError:
             week = index.week
-        return np.sin(2 * np.pi * (week - 1) / 53)
+        return np.sin(2 * np.pi * (week - 1.0) / 52.0)
 
 
 class WeekOfYearCosine(TimeFeature):
@@ -99,7 +99,7 @@ class WeekOfYearCosine(TimeFeature):
             week = index.isocalendar().week
         except AttributeError:
             week = index.week
-        return np.cos(2 * np.pi * (week - 1) / 53)
+        return np.cos(2 * np.pi * (week - 1.0) / 52.0)
 
 
 def time_features_from_frequency_str(freq_str: str) -> List[Callable]:
@@ -113,9 +113,14 @@ def time_features_from_frequency_str(freq_str: str) -> List[Callable]:
         offsets.Week: [DayOfMonthSine(), DayOfMonthCosine(), WeekOfYearSine(), WeekOfYearCosine()],
         offsets.Day: [DayOfWeekSine(), DayOfWeekCosine(), DayOfMonthSine(), DayOfMonthCosine(), DayOfYearSine(), DayOfYearCosine()],
         offsets.BusinessDay: [DayOfWeekSine(), DayOfWeekCosine(), DayOfMonthSine(), DayOfMonthCosine(), DayOfYearSine(), DayOfYearCosine()],
-        offsets.Hour: [HourOfDaySine(), HourOfDayCosine(), DayOfWeekSine(), DayOfWeekCosine(), DayOfMonthSine(), DayOfMonthCosine(), DayOfYearSine(), DayOfYearCosine()],
-        offsets.Minute: [MinuteOfHourSine(), MinuteOfHourCosine(), HourOfDaySine(), HourOfDayCosine(), DayOfWeekSine(), DayOfWeekCosine(), DayOfMonthSine(), DayOfMonthCosine(), DayOfYearSine(), DayOfYearCosine()],
-        offsets.Second: [SecondOfMinuteSine(), SecondOfMinuteCosine(), MinuteOfHourSine(), MinuteOfHourCosine(), HourOfDaySine(), HourOfDayCosine(), DayOfWeekSine(), DayOfWeekCosine(), DayOfMonthSine(), DayOfMonthCosine(), DayOfYearSine(), DayOfYearCosine()],
+        # Modify the Hour features to ensure correct range
+        offsets.Hour: [
+            DayOfMonthSine(), DayOfMonthCosine(),  # Days go first (0-31)
+            DayOfWeekSine(), DayOfWeekCosine(),    # Then weekdays (0-6) 
+            HourOfDaySine(), HourOfDayCosine(),    # Then hours (0-23)
+        ],
+        offsets.Minute: [MinuteOfHourSine(), MinuteOfHourCosine()],
+        offsets.Second: [SecondOfMinuteSine(), SecondOfMinuteCosine()]
     }
 
     offset = to_offset(freq_str)
@@ -141,4 +146,5 @@ def time_features_from_frequency_str(freq_str: str) -> List[Callable]:
 
 
 def custom_time_features(dates, freq='h'):
+    dates = pd.PeriodIndex(dates, freq=freq)
     return np.vstack([feat(dates) for feat in time_features_from_frequency_str(freq)])
