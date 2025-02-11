@@ -16,6 +16,22 @@ class TimeFeature:
     def __repr__(self):
         return self.__class__.__name__ + "()"
 
+class SeasonOfYear(TimeFeature):
+    """Season of year encoded as value between [-0.5, 0.5]"""
+
+    def __call__(self, index: pd.DatetimeIndex) -> np.ndarray:
+        def calculate_season(date):
+            month = date.month
+            if month in [12, 1, 2]:
+                return 0  # Winter
+            elif month in [3, 4, 5]:
+                return 1  # Spring
+            elif month in [6, 7, 8]:
+                return 2  # Summer
+            else:
+                return 3  # Fall
+
+        return np.array([calculate_season(date) for date in index]) / 3.0 - 0.5
 
 class SecondOfMinute(TimeFeature):
     """Minute of hour encoded as value between [-0.5, 0.5]"""
@@ -89,7 +105,8 @@ def time_features_from_frequency_str(freq_str: str) -> List[TimeFeature]:
         offsets.Week: [DayOfMonth, WeekOfYear],
         offsets.Day: [DayOfWeek, DayOfMonth, DayOfYear],
         offsets.BusinessDay: [DayOfWeek, DayOfMonth, DayOfYear],
-        offsets.Hour: [HourOfDay, DayOfWeek, DayOfMonth, DayOfYear],
+        # offsets.Hour: [HourOfDay, DayOfWeek, DayOfMonth, DayOfYear],
+        offsets.Hour: [HourOfDay, DayOfWeek, DayOfMonth, SeasonOfYear], # <---- MODIFIED
         offsets.Minute: [
             MinuteOfHour,
             HourOfDay,
