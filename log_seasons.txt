@@ -1,0 +1,114 @@
+2025-02-11:09:53:26,630 INFO     [utils.py:148] Note: NumExpr detected 48 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2025-02-11:09:53:26,630 INFO     [utils.py:160] NumExpr defaulting to 8 threads.
+Args in experiment:
+Namespace(is_training=1, model_id='2_1_default', model='Autoformer', data='Energy', root_path='./dataset/Energy/', data_path='load_forecasting.csv', features='M', target='OT', freq='h', checkpoints='./checkpoints/', seq_len=96, label_len=48, pred_len=24, bucket_size=4, n_hashes=4, enc_in=16, dec_in=16, c_out=16, d_model=512, n_heads=8, e_layers=2, d_layers=1, d_ff=2048, moving_avg=25, factor=3, distil=True, dropout=0.05, embed='timeF', activation='gelu', output_attention=False, do_predict=False, num_workers=10, itr=1, train_epochs=7, batch_size=32, patience=3, learning_rate=0.0001, des='Exp', loss='mse', lradj='type1', use_amp=False, use_gpu=True, gpu=0, use_multi_gpu=False, devices='0,1,2,3')
+Use GPU: cuda:0
+>>>>>>>start training : 2_1_default_Autoformer_Energy_ftM_sl96_ll48_pl24_dm512_nh8_el2_dl1_df2048_fc3_ebtimeF_dtTrue_Exp_0>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 25801
+val 8617
+test 8617
+        iters: 100, epoch: 1 | loss: 0.3807011
+        speed: 0.0428s/iter; left time: 237.4478s
+        iters: 200, epoch: 1 | loss: 0.3507324
+        speed: 0.0377s/iter; left time: 205.2153s
+        iters: 300, epoch: 1 | loss: 0.2998726
+        speed: 0.0357s/iter; left time: 190.6914s
+        iters: 400, epoch: 1 | loss: 0.3600448
+        speed: 0.0359s/iter; left time: 188.2127s
+        iters: 500, epoch: 1 | loss: 0.2983564
+        speed: 0.0353s/iter; left time: 181.7206s
+        iters: 600, epoch: 1 | loss: 0.3299087
+        speed: 0.0360s/iter; left time: 181.3202s
+        iters: 700, epoch: 1 | loss: 0.3379827
+        speed: 0.0364s/iter; left time: 179.7084s
+        iters: 800, epoch: 1 | loss: 0.2979698
+        speed: 0.0358s/iter; left time: 173.2032s
+Epoch: 1 cost time: 29.83207058906555
+Epoch: 1, Steps: 806 | Train Loss: 0.3976468 Vali Loss: 0.3634831 Test Loss: 0.3802932
+Validation loss decreased (inf --> 0.363483).  Saving model ...
+Updating learning rate to 0.0001
+        iters: 100, epoch: 2 | loss: 0.2900358
+        speed: 0.1533s/iter; left time: 726.2332s
+        iters: 200, epoch: 2 | loss: 0.3155806
+        speed: 0.0354s/iter; left time: 163.9371s
+        iters: 300, epoch: 2 | loss: 0.3183118
+        speed: 0.0354s/iter; left time: 160.4201s
+        iters: 400, epoch: 2 | loss: 0.2840663
+        speed: 0.0355s/iter; left time: 157.6728s
+        iters: 500, epoch: 2 | loss: 0.2071355
+        speed: 0.0355s/iter; left time: 153.7843s
+        iters: 600, epoch: 2 | loss: 0.2919214
+        speed: 0.0357s/iter; left time: 151.2835s
+        iters: 700, epoch: 2 | loss: 0.2620114
+        speed: 0.0357s/iter; left time: 147.8816s
+        iters: 800, epoch: 2 | loss: 0.3583425
+        speed: 0.0354s/iter; left time: 142.8997s
+Epoch: 2 cost time: 29.024061918258667
+Epoch: 2, Steps: 806 | Train Loss: 0.2983684 Vali Loss: 0.3562713 Test Loss: 0.3877201
+Validation loss decreased (0.363483 --> 0.356271).  Saving model ...
+Updating learning rate to 5e-05
+        iters: 100, epoch: 3 | loss: 0.2398181
+        speed: 0.1587s/iter; left time: 624.0014s
+        iters: 200, epoch: 3 | loss: 0.2461473
+        speed: 0.0370s/iter; left time: 141.7427s
+        iters: 300, epoch: 3 | loss: 0.2320236
+        speed: 0.0371s/iter; left time: 138.3121s
+        iters: 400, epoch: 3 | loss: 0.2236960
+        speed: 0.0381s/iter; left time: 138.2523s
+        iters: 500, epoch: 3 | loss: 0.2821174
+        speed: 0.0394s/iter; left time: 138.9886s
+        iters: 600, epoch: 3 | loss: 0.2177069
+        speed: 0.0366s/iter; left time: 125.4645s
+        iters: 700, epoch: 3 | loss: 0.2717270
+        speed: 0.0381s/iter; left time: 126.8812s
+        iters: 800, epoch: 3 | loss: 0.2875149
+        speed: 0.0380s/iter; left time: 122.9101s
+Epoch: 3 cost time: 31.138736486434937
+Epoch: 3, Steps: 806 | Train Loss: 0.2432796 Vali Loss: 0.3622278 Test Loss: 0.3862197
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 2.5e-05
+        iters: 100, epoch: 4 | loss: 0.1936416
+        speed: 0.1512s/iter; left time: 472.4790s
+        iters: 200, epoch: 4 | loss: 0.2673229
+        speed: 0.0356s/iter; left time: 107.6716s
+        iters: 300, epoch: 4 | loss: 0.2024951
+        speed: 0.0374s/iter; left time: 109.4001s
+        iters: 400, epoch: 4 | loss: 0.2055442
+        speed: 0.0360s/iter; left time: 101.7059s
+        iters: 500, epoch: 4 | loss: 0.1928017
+        speed: 0.0357s/iter; left time: 97.3820s
+        iters: 600, epoch: 4 | loss: 0.2023186
+        speed: 0.0389s/iter; left time: 102.0447s
+        iters: 700, epoch: 4 | loss: 0.1855169
+        speed: 0.0386s/iter; left time: 97.4039s
+        iters: 800, epoch: 4 | loss: 0.2273665
+        speed: 0.0365s/iter; left time: 88.5268s
+Epoch: 4 cost time: 29.961600065231323
+Epoch: 4, Steps: 806 | Train Loss: 0.2138897 Vali Loss: 0.3678263 Test Loss: 0.3885684
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 1.25e-05
+        iters: 100, epoch: 5 | loss: 0.1986580
+        speed: 0.1511s/iter; left time: 350.3783s
+        iters: 200, epoch: 5 | loss: 0.1997346
+        speed: 0.0356s/iter; left time: 78.9144s
+        iters: 300, epoch: 5 | loss: 0.1905684
+        speed: 0.0355s/iter; left time: 75.2758s
+        iters: 400, epoch: 5 | loss: 0.2293553
+        speed: 0.0354s/iter; left time: 71.4473s
+        iters: 500, epoch: 5 | loss: 0.2491900
+        speed: 0.0357s/iter; left time: 68.5638s
+        iters: 600, epoch: 5 | loss: 0.1670715
+        speed: 0.0354s/iter; left time: 64.4401s
+        iters: 700, epoch: 5 | loss: 0.2195180
+        speed: 0.0355s/iter; left time: 61.0427s
+        iters: 800, epoch: 5 | loss: 0.1812298
+        speed: 0.0356s/iter; left time: 57.6143s
+Epoch: 5 cost time: 28.939180374145508
+Epoch: 5, Steps: 806 | Train Loss: 0.1996864 Vali Loss: 0.3644152 Test Loss: 0.3945840
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : 2_1_default_Autoformer_Energy_ftM_sl96_ll48_pl24_dm512_nh8_el2_dl1_df2048_fc3_ebtimeF_dtTrue_Exp_0<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 8617
+test shape: (8617, 24, 16) (8617, 24, 16)
+test shape: (8617, 24, 16) (8617, 24, 16)
+mse:0.3882569670677185, mae:0.4266478717327118, rmse:0.6231026649475098 mape:2.761197090148926 mspe:4659.1015625
