@@ -124,7 +124,7 @@ class TimeFeatureEmbedding(nn.Module):
             raise ValueError("NaN values in temporal features")
         if x.device != self.embed.weight.device:
             x = x.to(self.embed.weight.device)
-        return self.embed(x.long())
+        return self.embed(x)
 
 
 class DataEmbedding(nn.Module):
