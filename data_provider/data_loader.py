@@ -60,7 +60,7 @@ class Dataset_Energy_hour(Dataset):
         # border1s = [0,                  12 * 30 * 24 * 3 - self.seq_len,    12 * 30 * 24 * 3 + 12 * 30 * 24 - self.seq_len]
         # border2s = [12 * 30 * 24 * 3,   12 * 30 * 24 * 3 + 12 * 30 * 24,    12 * 30 * 24 * 3 + 24 * 30 * 24]
         
-        train_yrs, vali_yrs, test_yrs = 1, 1, 3
+        train_yrs, vali_yrs, test_yrs = 3, 1, 1
 
         border1s = [0,                          12 * 30 * 24 * train_yrs - self.seq_len,              12 * 30 * 24 * train_yrs + 12 * 30 * 24 * test_yrs - self.seq_len]
         border2s = [12 * 30 * 24 * train_yrs,   12 * 30 * 24 * train_yrs + 12 * 30 * 24 * test_yrs,   12 * 30 * 24 * train_yrs + 12 * 30 * 24 * vali_yrs + 12 * 30 * 24 * test_yrs]
