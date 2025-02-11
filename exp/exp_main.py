@@ -226,9 +226,11 @@ class Exp_Main(Exp_Basic):
         mae, mse, rmse, mape, mspe = metric(preds, trues)
         print(f'mse:{mse}, mae:{mae}, rmse:{rmse} mape:{mape} mspe:{mspe}')
         model_id = self.args.model_id if self.args.model_id is not None else '0'
-        f = open(f"results-txt/{model_id}.txt", 'a')
-        f.write(model_id + "\n" + f"{self.args}" + "  \n")
-        f.write(f'mse:{mse}, mae:{mae}, rmse:{rmse} mape:{mape} mspe:{mspe}  \n')
+        f = open(f"results-csv/results_feb10.csv", 'a')
+        # f.write(model_id + "\n" + f"{self.args}" + "  \n")
+        # f.write(f'mse:{mse}, mae:{mae}, rmse:{rmse} mape:{mape} mspe:{mspe}  \n')
+        f.write(f'{model_id}, {mse}, {mae}, {rmse}, {mape}, {mspe}\n')
+        
         f.write('\n')
         f.write('\n')
         f.close()
