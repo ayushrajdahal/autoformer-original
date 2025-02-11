@@ -224,10 +224,11 @@ class Exp_Main(Exp_Basic):
             os.makedirs(folder_path)
 
         mae, mse, rmse, mape, mspe = metric(preds, trues)
-        print('mse:{}, mae:{}'.format(mse, mae))
-        f = open("result.txt", 'a')
-        f.write(setting + "  \n")
-        f.write('mse:{}, mae:{}'.format(mse, mae))
+        print(f'mse:{mse}, mae:{mae}, rmse:{rmse} mape:{mape} mspe:{mspe}')
+        model_id = self.args.model_id if self.args.model_id is not None else '0'
+        f = open(f"{model_id}.txt", 'a')
+        f.write(model_id + "\n" + self.args + "  \n")
+        f.write(f'mse:{mse}, mae:{mae}, rmse:{rmse} mape:{mape} mspe:{mspe}  \n')
         f.write('\n')
         f.write('\n')
         f.close()
