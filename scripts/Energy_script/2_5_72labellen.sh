@@ -4,7 +4,7 @@ python3 -u run.py \
   --is_training 1 \
   --root_path ./dataset/Energy/ \
   --data_path load_forecasting.csv \
-  --model_id Energy_96_24 \
+  --model_id 2_5_72labellen \
   --model Autoformer \
   --data Energy \
   --features M \
