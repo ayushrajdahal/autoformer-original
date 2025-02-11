@@ -1,4 +1,7 @@
 checkpoints/
+test_results/
+results/
+result.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
