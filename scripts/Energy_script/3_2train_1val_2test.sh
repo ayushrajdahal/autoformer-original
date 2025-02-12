@@ -18,5 +18,8 @@ python3 -u run.py \
   --dec_in 16 \
   --c_out 16 \
   --des 'Exp' \
-  --itr 1
+  --itr 1 \
+  --train_yrs 2 \
+  --val_yrs 1 \
+  --test_yrs 2
 
