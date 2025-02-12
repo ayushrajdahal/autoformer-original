@@ -227,12 +227,8 @@ class Exp_Main(Exp_Basic):
         print(f'mse:{mse}, mae:{mae}, rmse:{rmse} mape:{mape} mspe:{mspe}')
         model_id = self.args.model_id if self.args.model_id is not None else '0'
         f = open(f"results-csv/results_feb10.csv", 'a')
-        # f.write(model_id + "\n" + f"{self.args}" + "  \n")
-        # f.write(f'mse:{mse}, mae:{mae}, rmse:{rmse} mape:{mape} mspe:{mspe}  \n')
-        f.write(f'{model_id}, {mse}, {mae}, {rmse}, {mape}, {mspe}\n')
-        
-        f.write('\n')
-        f.write('\n')
+        # Model, MSE, MAE, RMSE, MAPE, MSPE,Seq_len,Label_len,Pred_len,Enc,Dec,Train/val/test,Time emb
+        f.write(f'{model_id}, {mse}, {mae}, {rmse}, {mape}, {mspe}, {self.args.seq_len}, {self.args.pred_len}, {self.args.e_layers}, {self.args.d_layers},,\n')
         f.close()
 
         np.save(folder_path + 'metrics.npy', np.array([mae, mse, rmse, mape, mspe]))
