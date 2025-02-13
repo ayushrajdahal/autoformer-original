@@ -55,10 +55,10 @@ class Dataset_Energy_hour(Dataset):
 
         df_raw = pd.read_csv(os.path.join(self.root_path, self.data_path))
 
-        train_yrs, vali_yrs, test_yrs = self.train_val_test
+        train_yrs, val_yrs, test_yrs = self.train_val_test
 
         border1s = [0,                          12 * 30 * 24 * train_yrs - self.seq_len,              12 * 30 * 24 * train_yrs + 12 * 30 * 24 * test_yrs - self.seq_len]
-        border2s = [12 * 30 * 24 * train_yrs,   12 * 30 * 24 * train_yrs + 12 * 30 * 24 * test_yrs,   12 * 30 * 24 * train_yrs + 12 * 30 * 24 * vali_yrs + 12 * 30 * 24 * test_yrs]
+        border2s = [12 * 30 * 24 * train_yrs,   12 * 30 * 24 * train_yrs + 12 * 30 * 24 * test_yrs,   12 * 30 * 24 * train_yrs + 12 * 30 * 24 * val_yrs + 12 * 30 * 24 * test_yrs]
 
         border1 = border1s[self.set_type]
         border2 = border2s[self.set_type]
@@ -128,7 +128,7 @@ class Dataset_Energy_hour(Dataset):
 class Dataset_ETT_hour(Dataset):
     def __init__(self, root_path, flag='train', size=None,
                  features='S', data_path='ETTh1.csv',
-                 target='OT', scale=True, timeenc=0, freq='h'):
+                 target='OT', scale=True, timeenc=0, freq='h', train_val_test=None):
         # size [seq_len, label_len, pred_len]
         # info
         if size == None:
