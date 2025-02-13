@@ -18,6 +18,6 @@ python3 -u run.py \
   --dec_in 16 \
   --c_out 16 \
   --des 'Exp' \
-  --itr 1 \
-  --embed sincos
+  --itr 1
+  # --embed sincos
 
