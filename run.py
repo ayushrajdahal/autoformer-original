@@ -78,9 +78,9 @@ def main():
     parser.add_argument('--devices', type=str, default='0,1,2,3', help='device ids of multile gpus')
 
     # CUSTOM - WARNING: this is only for load_forecasting. relevant code in data_factory and data_loader.
-    parser.add_argument('--test_yrs', type=int, default=3, help='number of years to test')
+    parser.add_argument('--train_yrs', type=int, default=3, help='number of years to train')
     parser.add_argument('--val_yrs', type=int, default=1, help='number of years to validate')
-    parser.add_argument('--train_yrs', type=int, default=1, help='number of years to train')
+    parser.add_argument('--test_yrs', type=int, default=1, help='number of years to test')
 
     args = parser.parse_args()
 
