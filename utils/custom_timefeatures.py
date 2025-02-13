@@ -115,6 +115,7 @@ def time_features_from_frequency_str(freq_str: str) -> List[Callable]:
         offsets.BusinessDay: [DayOfWeekSine(), DayOfWeekCosine(), DayOfMonthSine(), DayOfMonthCosine(), DayOfYearSine(), DayOfYearCosine()],
         # Modify the Hour features to ensure correct range
         offsets.Hour: [
+            DayOfYearSine(), DayOfYearCosine(),    # Yearly
             DayOfMonthSine(), DayOfMonthCosine(),  # Days go first (0-31)
             DayOfWeekSine(), DayOfWeekCosine(),    # Then weekdays (0-6) 
             HourOfDaySine(), HourOfDayCosine(),    # Then hours (0-23)
