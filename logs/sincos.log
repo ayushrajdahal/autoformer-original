@@ -1,0 +1,98 @@
+
+[Running] bash "/home/hpc/Documents/autoformer-original/scripts/Energy_script/2_2_sincos.sh"
+2025-02-13:07:59:32,582 INFO     [utils.py:148] Note: NumExpr detected 48 cores but "NUMEXPR_MAX_THREADS" not set, so enforcing safe limit of 8.
+2025-02-13:07:59:32,582 INFO     [utils.py:160] NumExpr defaulting to 8 threads.
+Args in experiment:
+Namespace(is_training=1, model_id='2_2_sincos', model='Autoformer', data='Energy', root_path='./dataset/Energy/', data_path='load_forecasting.csv', features='M', target='OT', freq='h', checkpoints='./checkpoints/', seq_len=96, label_len=48, pred_len=24, bucket_size=4, n_hashes=4, enc_in=16, dec_in=16, c_out=16, d_model=512, n_heads=8, e_layers=2, d_layers=1, d_ff=2048, moving_avg=25, factor=3, distil=True, dropout=0.05, embed='timeF', activation='gelu', output_attention=False, do_predict=False, num_workers=10, itr=1, train_epochs=7, batch_size=32, patience=3, learning_rate=0.0001, des='Exp', loss='mse', lradj='type1', use_amp=False, use_gpu=True, gpu=0, use_multi_gpu=False, devices='0,1,2,3', train_yrs=3, val_yrs=1, test_yrs=1)
+Use GPU: cuda:0
+>>>>>>>start training : 2_2_sincos_Autoformer_Energy_ftM_sl96_ll48_pl24_dm512_nh8_el2_dl1_df2048_fc3_ebtimeF_dtTrue_Exp_0>>>>>>>>>>>>>>>>>>>>>>>>>>
+train 25801
+val 8617
+test 8617
+	iters: 100, epoch: 1 | loss: 0.5474943
+	speed: 0.0401s/iter; left time: 222.0292s
+	iters: 200, epoch: 1 | loss: 0.3422638
+	speed: 0.0342s/iter; left time: 186.0043s
+	iters: 300, epoch: 1 | loss: 0.2532830
+	speed: 0.0342s/iter; left time: 182.8610s
+	iters: 400, epoch: 1 | loss: 0.3483815
+	speed: 0.0341s/iter; left time: 178.9624s
+	iters: 500, epoch: 1 | loss: 0.3695240
+	speed: 0.0355s/iter; left time: 182.4248s
+	iters: 600, epoch: 1 | loss: 0.4084706
+	speed: 0.0344s/iter; left time: 173.5372s
+	iters: 700, epoch: 1 | loss: 0.3321568
+	speed: 0.0342s/iter; left time: 168.8544s
+	iters: 800, epoch: 1 | loss: 0.2577885
+	speed: 0.0342s/iter; left time: 165.7709s
+Epoch: 1 cost time: 28.350202322006226
+Epoch: 1, Steps: 806 | Train Loss: 0.3885094 Vali Loss: 0.3478621 Test Loss: 0.3719267
+Validation loss decreased (inf --> 0.347862).  Saving model ...
+Updating learning rate to 0.0001
+	iters: 100, epoch: 2 | loss: 0.2673549
+	speed: 0.1498s/iter; left time: 709.4650s
+	iters: 200, epoch: 2 | loss: 0.4476016
+	speed: 0.0350s/iter; left time: 162.3518s
+	iters: 300, epoch: 2 | loss: 0.2590135
+	speed: 0.0344s/iter; left time: 156.1793s
+	iters: 400, epoch: 2 | loss: 0.2543381
+	speed: 0.0344s/iter; left time: 152.7600s
+	iters: 500, epoch: 2 | loss: 0.2562785
+	speed: 0.0344s/iter; left time: 149.1978s
+	iters: 600, epoch: 2 | loss: 0.3024589
+	speed: 0.0344s/iter; left time: 145.8475s
+	iters: 700, epoch: 2 | loss: 0.2373597
+	speed: 0.0346s/iter; left time: 143.0544s
+	iters: 800, epoch: 2 | loss: 0.2406465
+	speed: 0.0345s/iter; left time: 139.4119s
+Epoch: 2 cost time: 28.13135004043579
+Epoch: 2, Steps: 806 | Train Loss: 0.2884514 Vali Loss: 0.3520007 Test Loss: 0.3927350
+EarlyStopping counter: 1 out of 3
+Updating learning rate to 5e-05
+	iters: 100, epoch: 3 | loss: 0.2354113
+	speed: 0.1490s/iter; left time: 585.6764s
+	iters: 200, epoch: 3 | loss: 0.2132121
+	speed: 0.0349s/iter; left time: 133.8007s
+	iters: 300, epoch: 3 | loss: 0.2007296
+	speed: 0.0342s/iter; left time: 127.7016s
+	iters: 400, epoch: 3 | loss: 0.2438881
+	speed: 0.0345s/iter; left time: 125.2683s
+	iters: 500, epoch: 3 | loss: 0.2644046
+	speed: 0.0362s/iter; left time: 127.8166s
+	iters: 600, epoch: 3 | loss: 0.2129423
+	speed: 0.0361s/iter; left time: 123.9910s
+	iters: 700, epoch: 3 | loss: 0.2124061
+	speed: 0.0361s/iter; left time: 120.3267s
+	iters: 800, epoch: 3 | loss: 0.3460210
+	speed: 0.0356s/iter; left time: 114.9767s
+Epoch: 3 cost time: 28.769391775131226
+Epoch: 3, Steps: 806 | Train Loss: 0.2319527 Vali Loss: 0.3690717 Test Loss: 0.4033073
+EarlyStopping counter: 2 out of 3
+Updating learning rate to 2.5e-05
+	iters: 100, epoch: 4 | loss: 0.1972210
+	speed: 0.1525s/iter; left time: 476.5091s
+	iters: 200, epoch: 4 | loss: 0.1927033
+	speed: 0.0352s/iter; left time: 106.4831s
+	iters: 300, epoch: 4 | loss: 0.2240205
+	speed: 0.0354s/iter; left time: 103.4164s
+	iters: 400, epoch: 4 | loss: 0.2027903
+	speed: 0.0351s/iter; left time: 99.1222s
+	iters: 500, epoch: 4 | loss: 0.2394034
+	speed: 0.0346s/iter; left time: 94.1492s
+	iters: 600, epoch: 4 | loss: 0.1915144
+	speed: 0.0345s/iter; left time: 90.5742s
+	iters: 700, epoch: 4 | loss: 0.1723504
+	speed: 0.0345s/iter; left time: 87.1610s
+	iters: 800, epoch: 4 | loss: 0.1853210
+	speed: 0.0345s/iter; left time: 83.6990s
+Epoch: 4 cost time: 28.390042781829834
+Epoch: 4, Steps: 806 | Train Loss: 0.2044327 Vali Loss: 0.3698049 Test Loss: 0.4084304
+EarlyStopping counter: 3 out of 3
+Early stopping
+>>>>>>>testing : 2_2_sincos_Autoformer_Energy_ftM_sl96_ll48_pl24_dm512_nh8_el2_dl1_df2048_fc3_ebtimeF_dtTrue_Exp_0<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+test 8617
+test shape: (8617, 24, 16) (8617, 24, 16)
+test shape: (8617, 24, 16) (8617, 24, 16)
+model_id: 2_2_sincos, mse:0.3724108934402466, mae:0.4066963791847229, rmse:0.6102547645568848 mape:2.6578433513641357 mspe:4191.16162109375
+
+[Done] exited with code=0 in 168.353 seconds
