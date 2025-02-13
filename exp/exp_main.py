@@ -20,6 +20,8 @@ import time
 import warnings
 import numpy as np
 
+from datetime import date
+
 warnings.filterwarnings('ignore')
 
 
@@ -163,6 +165,8 @@ class Exp_Main(Exp_Basic):
             print("Epoch: {0}, Steps: {1} | Train Loss: {2:.7f} Vali Loss: {3:.7f} Test Loss: {4:.7f}".format(
                 epoch + 1, train_steps, train_loss, vali_loss, test_loss))
             early_stopping(vali_loss, self.model, path)
+            
+            # TODO: make these configurable in the args
             if early_stopping.early_stop:
                 print("Early stopping")
                 break
@@ -223,12 +227,23 @@ class Exp_Main(Exp_Basic):
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
 
-        mae, mse, rmse, mape, mspe = metric(preds, trues)
-        print(f'mse:{mse}, mae:{mae}, rmse:{rmse} mape:{mape} mspe:{mspe}')
+
         model_id = self.args.model_id if self.args.model_id is not None else '0'
-        f = open(f"results-csv/results_feb10.csv", 'a')
-        # Model, MSE, MAE, RMSE, MAPE, MSPE,Seq_len,Label_len,Pred_len,Enc,Dec,Train/val/test,Time emb
-        f.write(f'{model_id}, {mse}, {mae}, {rmse}, {mape}, {mspe}, {self.args.seq_len}, {self.args.pred_len}, {self.args.e_layers}, {self.args.d_layers},,\n')
+        mae, mse, rmse, mape, mspe = metric(preds, trues)
+        print(f'model_id: {model_id}, mse:{mse}, mae:{mae}, rmse:{rmse} mape:{mape} mspe:{mspe}')
+
+        # CSV results save
+        csv_folder_path = './results-csv/'
+        csv_file_path = csv_folder_path + f'results-{date.today()}.csv'
+        if not os.path.exists(csv_folder_path):
+            os.makedirs(csv_folder_path)
+        # create and initialize the file if it doesn't exist
+        if not os.path.exists(csv_file_path):
+            with open(csv_file_path, 'w') as f:
+                f.write('Setting,data,seq_len,label_len,pred_len,e_layers,d_layers,factor,enc_in,dec_in,c_out,train/val/test,time emb,MSE,MAE,RMSE,MAPE,MSPE\n')
+        
+        with open(csv_file_path, 'a') as f:
+            f.write(f'{model_id}, {self.args.data}, {self.args.seq_len}, {self.args.label_len}, {self.args.pred_len}, {self.args.e_layers}, {self.args.d_layers},{self.args.factor},{self.args.enc_in},{self.args.dec_in},{self.args.c_out},{self.args.train_yrs}.{self.args.val_yrs}.{self.args.test_yrs},, {mse}, {mae}, {rmse}, {mape}, {mspe}\n')
         f.close()
 
         np.save(folder_path + 'metrics.npy', np.array([mae, mse, rmse, mape, mspe]))
