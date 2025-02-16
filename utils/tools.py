@@ -4,6 +4,20 @@ import matplotlib.pyplot as plt
 
 plt.switch_backend('agg')
 
+def set_seeds(seed=2024):
+    """Set random seeds for reproducibility"""
+    import random
+    import numpy as np
+    import torch
+    
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    # Additional seed settings for CUDA operations
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+
 
 def adjust_learning_rate(optimizer, epoch, args):
     # lr = args.learning_rate * (0.2 ** (epoch // 2))

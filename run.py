@@ -4,14 +4,10 @@ import torch
 from exp.exp_main import Exp_Main
 import random
 import numpy as np
+from utils.tools import set_seeds
 
 
 def main():
-    fix_seed = 2021
-    random.seed(fix_seed)
-    torch.manual_seed(fix_seed)
-    np.random.seed(fix_seed)
-
     parser = argparse.ArgumentParser(description='Autoformer & Transformer family for Time Series Forecasting')
 
     # basic config
@@ -82,7 +78,13 @@ def main():
     parser.add_argument('--val_yrs', type=int, default=1, help='number of years to validate')
     parser.add_argument('--test_yrs', type=int, default=1, help='number of years to test')
 
+    # CUSTOM - add seed argument
+    parser.add_argument('--seed', type=int, default=2025, help='random seed')
+
     args = parser.parse_args()
+
+    # Set seeds before any other operations
+    set_seeds(args.seed)
 
     # args.use_gpu = True if torch.cuda.is_available() and args.use_gpu else False
 
