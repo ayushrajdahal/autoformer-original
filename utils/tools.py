@@ -1,15 +1,12 @@
 import numpy as np
 import torch
 import matplotlib.pyplot as plt
+import random
 
 plt.switch_backend('agg')
 
 def set_seeds(seed=2024):
     """Set random seeds for reproducibility"""
-    import random
-    import numpy as np
-    import torch
-    
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
