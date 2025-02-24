@@ -240,10 +240,10 @@ class Exp_Main(Exp_Basic):
         # create and initialize the file if it doesn't exist
         if not os.path.exists(csv_file_path):
             with open(csv_file_path, 'w') as f:
-                f.write('Setting,data,seq_len,label_len,pred_len,e_layers,d_layers,factor,enc_in,dec_in,c_out,train/val/test,time emb,MSE,MAE,RMSE,MAPE,MSPE\n')
+                f.write('Setting,data,n_params,seq_len,label_len,pred_len,e_layers,d_layers,factor,enc_in,dec_in,c_out,train/val/test,time emb,MSE,MAE,RMSE,MAPE,MSPE\n')
         
         with open(csv_file_path, 'a') as f:
-            f.write(f'{model_id}, {self.args.data}, {self.args.seq_len}, {self.args.label_len}, {self.args.pred_len}, {self.args.e_layers}, {self.args.d_layers},{self.args.factor},{self.args.enc_in},{self.args.dec_in},{self.args.c_out},{self.args.train_yrs}.{self.args.val_yrs}.{self.args.test_yrs},, {mse}, {mae}, {rmse}, {mape}, {mspe}\n')
+            f.write(f'{model_id}, {self.args.data}, {sum(p.numel() for p in self.model.parameters() if p.requires_grad)}, {self.args.seq_len}, {self.args.label_len}, {self.args.pred_len}, {self.args.e_layers}, {self.args.d_layers},{self.args.factor},{self.args.enc_in},{self.args.dec_in},{self.args.c_out},{self.args.train_yrs}.{self.args.val_yrs}.{self.args.test_yrs},, {mse}, {mae}, {rmse}, {mape}, {mspe}\n')
         f.close()
 
         np.save(folder_path + 'metrics.npy', np.array([mae, mse, rmse, mape, mspe]))
